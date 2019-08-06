@@ -1,0 +1,39 @@
+.container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-self: stretch;
+  min-height: 100%;
+}
+
+.item {
+  display: flex;
+  align-self: stretch;
+  flex-direction: column;
+  flex: 1;
+  border-color: #CCCCCC;
+  border-style: dashed;
+  border-width: 1px;
+  border-radius: 0.30rem;
+  margin: 0.5rem;
+  padding: 1rem;
+}
+
+.head {
+  display: inline-block;
+  margin: 0;
+  padding: 1rem;
+}
+
+.addButton {
+  align-self: flex-end;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  background-color: cadetblue;
+  border-style: none;
+  color: white;
+  font-size: 1rem;
+  padding: 1rem;
+  border-radius: 0.30rem;
+}

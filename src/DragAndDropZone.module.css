@@ -1,0 +1,17 @@
+
+.dragContainer {
+  background-color: rgba(253, 244, 208, 0.808);
+  display: flex;
+  flex: 1;
+  align-self: stretch;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.itemContainer {
+  display: flex;
+  align-self: stretch;
+  flex-direction: column;
+  flex: 1;
+}
