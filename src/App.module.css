@@ -7,7 +7,7 @@
   min-height: 100%;
 }
 
-.item {
+.section {
   display: flex;
   align-self: stretch;
   flex-direction: column;
@@ -18,6 +18,26 @@
   border-radius: 0.30rem;
   margin: 0.5rem;
   padding: 1rem;
+}
+
+.question {
+  display: flex;
+  align-self: stretch;
+  flex-direction: row;
+  flex: 1;
+  border-color: #CCCCCC;
+  border-style: dashed;
+  border-width: 1px;
+  border-radius: 0.30rem;
+  margin: 0.5rem;
+  padding: 1rem;
+}
+
+.sectionContent {
+  display: flex;
+  align-self: stretch;
+  flex-direction: column;
+  flex: 1;
 }
 
 .head {

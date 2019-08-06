@@ -1,11 +1,11 @@
 import React, { useCallback } from 'react';
 import styles from './DragAndDropZone.module.css';
 
-const DRAGGED_KEY = 'DRAGGED_ITEM_INDEX';
+export const DRAGGED_KEY = 'DRAGGED_ITEM_INDEX';
 
 export const useHandleDrop = (items, setItems, ...deps) => useCallback((event, item) => {
   let draggedItemIndex = event.dataTransfer.getData(DRAGGED_KEY);
-
+  console.log('fff');
   let targetItemIndex = items.findIndex(
     ({ id }) => id === item.id,
   );
@@ -33,11 +33,10 @@ const DragAndDropZone = ({
     (event, item) => {
       let draggedItemIndex = items.findIndex(
         ({ id }) => id === item.id,
-      );
-      event.dataTransfer.setData(DRAGGED_KEY, draggedItemIndex);
-
-      handleDragStart(item);
-    },
+        );
+        event.dataTransfer.setData(DRAGGED_KEY, draggedItemIndex);
+        handleDragStart(item);
+      },
     [handleDragStart, items],
   );
 
