@@ -1,0 +1,1 @@
+export const DRAGGED_KEY = 'DRAGGED_ITEM_INDEX';

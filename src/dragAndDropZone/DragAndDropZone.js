@@ -1,43 +1,25 @@
 import React, { useCallback } from 'react';
-import styles from './DragAndDropZone.module.css';
-
-export const DRAGGED_KEY = 'DRAGGED_ITEM_INDEX';
-
-export const useHandleDrop = (items, setItems, ...deps) => useCallback((event, item) => {
-  let draggedItemIndex = event.dataTransfer.getData(DRAGGED_KEY);
-  console.log('fff');
-  let targetItemIndex = items.findIndex(
-    ({ id }) => id === item.id,
-  );
-
-  const draggedItem = items[draggedItemIndex];
-
-  const newItems = [...items];
-  newItems.splice(draggedItemIndex, 1);
-  newItems.splice(targetItemIndex, 0, draggedItem);
-
-  setItems(newItems);
-// eslint-disable-next-line react-hooks/exhaustive-deps
-}, [items, setItems, ...deps])
-
+import { DRAGGED_KEY } from './constants';
+import styles from './styles.module.css';
 
 const DragAndDropZone = ({
   items,
   handleDrop,
   renderItem,
+  keyExtractor = item => item.id,
   handleDragStart = () => {},
   containerStyles,
   itemContainerStyles,
 }) => {
   const onDragStart = useCallback(
-    (event, item) => {
+    (event, draggedItem) => {
       let draggedItemIndex = items.findIndex(
-        ({ id }) => id === item.id,
+        (item) => keyExtractor(item) === keyExtractor(draggedItem),
         );
         event.dataTransfer.setData(DRAGGED_KEY, draggedItemIndex);
-        handleDragStart(item);
+        handleDragStart(draggedItem);
       },
-    [handleDragStart, items],
+    [handleDragStart, items, keyExtractor],
   );
 
   const onDragOver = useCallback((event) => event.preventDefault(), []);
@@ -46,7 +28,7 @@ const DragAndDropZone = ({
     <div className={ containerStyles || styles.dragContainer}>
       {items.map(item => (
         <div
-          key={item.id}
+          key={keyExtractor(item)}
           draggable
           onDragStart={(e) => onDragStart(e, item)}
           onDragOver={onDragOver}

@@ -1,0 +1,23 @@
+.delete {
+  color: whitesmoke;
+  align-self: flex-end;
+  background-color: tomato;
+  border-style: none;
+  font-size: 1rem;
+  padding: .5rem;
+  border-radius: 0.30rem;
+  margin-bottom: 1rem;
+}
+
+.edit {
+  color: whitesmoke;
+  align-self: flex-end;
+  background-color: darkorange;
+  border-style: none;
+  font-size: 1rem;
+  padding: 0.3rem;
+  border-radius: 0.30rem;
+  margin-bottom: 1rem;
+  margin-right: 1rem;
+  padding: .5rem;
+}

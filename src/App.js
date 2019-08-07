@@ -1,47 +1,21 @@
 import React, { useState, useCallback } from 'react';
 import styles from './App.module.css';
-import DragAndDropZone, { useHandleDrop } from './DragAndDropZone';
-
-const Section = ({ item, questions, handleDrop, handleDragStart, disableDrag }) => {
-  const { title } = item;
-  return (
-    <div
-      className={styles.section}
-    >
-      <p>{title}</p>
-      <DragAndDropZone
-        disableDrag={disableDrag}
-        items={questions}
-        handleDrop={handleDrop}
-        handleDragStart={handleDragStart}
-        containerStyles={styles.sectionContent}
-        renderItem={(item) => <Question item={item} />}
-      />
-    </div>
-  )
-};
-
-const Question = ({ item }) => (
-  <div
-    className={styles.question}
-  >
-    {item.name}
-  </div>
-);
+import { DragAndDropZone, useHandleDrop } from './dragAndDropZone';
+import Section from './section';
 
 function App() {
   const [interactedQuestion, setInteractedQuestion] = useState(null);
 
   const [sections, setSections] = useState([
-    { id: 1, title: 'Section 1' },
-    { id: 2, title: 'Section 2' },
-    { id: 3, title: 'Section 3' },
+    { id: 1, title: 'Basic info' },
+    { id: 2, title: 'Jobs' },
+    { id: 3, title: 'Other' },
   ]);
 
   const [questions, setQuestions] = useState({
-    1: [{ id: 1, name: 'Question 1', sectionId: 1, }, { id: 2, name: 'Question 2', sectionId: 1, }],
-    2: [{id: 1, name: 'Question 3', sectionId: 2,}],
-    3: [{id: 1, name: 'Question 4', sectionId: 3,}],
+    1: [{ id: 1, name: 'First Name', sectionId: 1, }, { id: 2, name: 'Last Name', sectionId: 1, }],
+    2: [{id: 3, name: 'Previous jobs', sectionId: 2,}],
+    3: [{id: 4, name: 'Other information', sectionId: 3,}],
   });
 
   const handleSectionDrop = useHandleDrop(sections, setSections);
@@ -76,20 +50,47 @@ function App() {
 
   const addSection = useCallback(() => {
     const id = Math.random() * 10000;
-    const newSection = { id: id, title: `${id}`, questions: []};
+    const newSection = { id: id, title: `${id}`};
 
+    setQuestions({...questions, [id]: []});
     setSections([...sections, newSection]);
-  }, [sections, setSections]);
+  }, [questions, sections]);
+
+  const handleAddQuestion = useCallback((section) => {
+    setQuestions({
+      ...questions,
+      [section.id]: [
+        ...questions[section.id],
+        {
+          id: Math.random() * 10000,
+          name: 'Dummy question',
+          sectionId: section.id,
+        },
+      ],
+    })
+  }, [questions]);
+
+  const handleDeleteSection = useCallback((section) => {
+    const newSections = sections.filter(s => s.id !== section.id);
+    setSections(newSections);
+  }, [sections]);
+
+  const handleDeleteQuestion = useCallback((question) => {
+    setQuestions({
+      ...questions,
+      [question.sectionId]: questions[question.sectionId].filter(({id}) => id !== question.id),
+    })
+  }, [questions]);
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.head}>Form Builder</h2>
+      <h2 className={styles.head}>Section Builder</h2>
       <button
         type="button"
         onClick={addSection}
         className={styles.addButton}
       >
-        Add section
+        Add sub section
       </button>
       <DragAndDropZone
         items={sections}
@@ -97,6 +98,9 @@ function App() {
         renderItem={(item) => (
           <Section
             item={item}
+            onAdd={handleAddQuestion}
+            onDelete={handleDeleteSection}
+            onDeleteQuestion={handleDeleteQuestion}
             questions={questions[item.id]}
             handleDrop={handleQuestionDrop}
             handleDragStart={handleQuestionDragStart}
