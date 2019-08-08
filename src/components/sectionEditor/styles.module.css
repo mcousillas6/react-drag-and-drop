@@ -3,25 +3,36 @@
   display: flex;
   flex-direction: column;
   flex: 1;
-  align-self: stretch;
   min-height: 100%;
+  max-width: 50rem;
 }
-
 
 .head {
   display: inline-block;
   margin: 0;
   padding: 1rem;
+  color: teal;
 }
 
 .addButton {
-  align-self: flex-start;
-  margin-left: 1.3rem;
-  margin-bottom: 1rem;
-  background-color: cadetblue;
-  border-style: none;
-  color: white;
   font-size: 1rem;
-  padding: 1rem;
   border-radius: 0.30rem;
+  border-width: 2px;
+  flex: 1;
+  color: grey;
+  background-color: whitesmoke;
+  border-style: dashed;
+  font-size: 1.5rem;
+  border-radius: 0.30rem;
+  margin: 1rem 2rem;
+  padding: 1rem;
 }
+
+.sectionContent {
+  display: flex;
+  align-self: stretch;
+  flex-direction: column;
+  flex: 1;
+}
+
+.sectionContainer {}

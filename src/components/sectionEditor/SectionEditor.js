@@ -3,8 +3,8 @@ import styles from './styles.module.css';
 import QUESTIONS from '../../sample/questions';
 import SECTIONS from '../../sample/sections';
 import idGenerator from '../../sample/idGenerator';
-import { DragAndDropZone, useHandleDrop } from '../dragAndDropZone';
-import Section from '../section';
+import { DragAndDropZone, useHandleDrop } from '../DragAndDropZone';
+import Section from '../Section';
 
 function SectionEditor() {
   const [interactedQuestion, setInteractedQuestion] = useState(null);
@@ -80,17 +80,12 @@ function SectionEditor() {
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.head}>Section Builder</h2>
-      <button
-        type="button"
-        onClick={addSection}
-        className={styles.addButton}
-      >
-        Add sub section
-      </button>
+      <h1 className={styles.head}>Section Title</h1>
       <DragAndDropZone
         items={sections}
         handleDrop={handleSectionDrop}
+        containerStyles={styles.sectionContent}
+        itemContainerStyles={styles.sectionContainer}
         renderItem={(item) => (
           <Section
             item={item}
@@ -103,6 +98,13 @@ function SectionEditor() {
           />
         )}
       />
+      <button
+        type="button"
+        onClick={addSection}
+        className={styles.addButton}
+      >
+        + Add Section
+      </button>
     </div>
   );
 }

@@ -20,58 +20,58 @@
   align-self: stretch;
   flex-direction: column;
   flex: 1;
-  min-width: 30rem;
 }
 
 .questionContainer { }
 
 .buttonContainer {
-  align-self: flex-end;
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
 }
 
 .title {
+  flex: 1;
   text-align: left;
-  font-size: 1.5rem;
+  font-weight: 600;
+  font-size: 2rem;
+  color: teal;
 }
 
 .titleContainer {
+  display: flex;
+  flex: 1;
   flex-direction: row;
   margin: 0.5rem;
 }
 
 .delete {
   color: whitesmoke;
-  align-self: flex-end;
-  background-color: tomato;
-  border-style: none;
-  font-size: 1rem;
-  padding: .5rem;
-  border-radius: 0.30rem;
+  border-style: dashed;
+  border-width: 2px;
   margin-bottom: 1rem;
+  align-self: center;
+  padding: .3rem;
 }
 
 .edit {
   color: whitesmoke;
-  align-self: flex-end;
-  background-color: darkorange;
-  border-style: none;
-  font-size: 1rem;
-  padding: 0.3rem;
-  border-radius: 0.30rem;
+  border-style: dashed;
+  border-width: 2px;
   margin-bottom: 1rem;
+  align-self: center;
+  padding: .3rem;
   margin-right: 1rem;
-  padding: .5rem;
 }
 
 .add {
-  color: whitesmoke;
-  align-self: flex-end;
-  background-color: cornflowerblue;
-  border-style: none;
+  flex: 1;
+  color: grey;
+  background-color: whitesmoke;
+  border-style: dashed;
+  border-width: 2px;
   font-size: 1rem;
-  padding: 0.3rem;
   border-radius: 0.30rem;
-  margin-bottom: 1rem;
-  margin-right: 1rem;
-  padding: .5rem;
+  margin: 1rem;
+  padding: 1rem;
 }

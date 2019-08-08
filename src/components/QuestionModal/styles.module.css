@@ -1,0 +1,41 @@
+.container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  margin: 3rem;
+}
+
+.input {
+  margin-bottom: 1rem;
+  width: 20rem;
+  font-size: 1rem;
+  padding: .3rem;
+}
+
+.close {
+  font-size: 1rem;
+  color: white;
+  border-style: none;
+  border-radius: 0.30rem;
+  align-self: flex-end;
+}
+
+.add {
+  font-size: 1rem;
+  border-radius: 0.30rem;
+  border-width: 2px;
+  color: white;
+  background-color: teal;
+  border-style: none;
+  font-size: 1.5rem;
+  border-radius: 0.30rem;
+  margin: 1rem;
+  align-self: center;
+  padding: .3rem 3rem;
+}

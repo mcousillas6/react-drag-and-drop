@@ -1,4 +1,6 @@
 import React from 'react';
+import deleteIcon from '../../assets/deleteIcon.svg';
+import editIcon from '../../assets/editIcon.svg';
 import styles from './styles.module.css';
 
 const ActionButtons = ({ containerStyles, onDelete, onEdit }) => (
@@ -7,13 +9,13 @@ const ActionButtons = ({ containerStyles, onDelete, onEdit }) => (
       className={styles.edit}
       onClick={onEdit}
     >
-      edit
+      <img src={editIcon} alt="edit button"/>
     </button>
     <button
       className={styles.delete}
       onClick={onDelete}
     >
-      Delete
+      <img src={deleteIcon} alt="delete button"/>
     </button>
   </div>
 );

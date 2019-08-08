@@ -1,8 +1,10 @@
-import React from 'react';
-import Question from '../question';
-import { DragAndDropZone } from '../dragAndDropZone';
-import ActionButtons from '../actionButtons';
+import React, { useState, useCallback } from 'react';
+import Question from '../Question';
+import { DragAndDropZone } from '../DragAndDropZone';
+import ActionButtons from '../ActionButtons';
 import styles from './styles.module.css';
+import Separator from '../Separator';
+import QuestionModal from '../QuestionModal';
 
 const Section = ({
   item,
@@ -14,41 +16,50 @@ const Section = ({
   onAdd,
   onDeleteQuestion,
 }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const handleAddQuestion = useCallback(
+    () => {
+      onAdd(item);
+      setIsOpen(false);
+    },
+    [item, onAdd],
+  );
   const { title } = item;
+
   return (
-    <div
-      className={styles.section}
-    >
-      <div className={styles.titleContainer}>
-        <p className={styles.title}>{title}</p>
+    <>
+      <QuestionModal
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        onSubmit={handleAddQuestion} // TODO: replace
+      />
+      <div
+        className={styles.section}
+      >
+        <div className={styles.titleContainer}>
+          <p className={styles.title}>{title}</p>
+          <ActionButtons
+            containerStyles={styles.buttonContainer}
+            onDelete={() => onDelete(item)}
+            onEdit={onEdit}
+          />
+        </div>
+        <DragAndDropZone
+          items={questions}
+          handleDrop={handleDrop}
+          handleDragStart={handleDragStart}
+          containerStyles={styles.sectionContent}
+          itemContainerStyles={styles.sectionContainer}
+          renderItem={(item) => <Question item={item} onDelete={onDeleteQuestion}/>}
+        />
         <button
           className={styles.add}
-          onClick={() => onAdd(item)}
+          onClick={() => setIsOpen(true)}
         >
-          Add Question
-        </button>
-        <button
-          className={styles.edit}
-          onClick={onEdit}
-        >
-          Edit
-        </button>
-        <button
-          className={styles.delete}
-          onClick={() => onDelete(item)}
-        >
-          Delete
+          + Add Question
         </button>
       </div>
-      <DragAndDropZone
-        items={questions}
-        handleDrop={handleDrop}
-        handleDragStart={handleDragStart}
-        containerStyles={styles.sectionContent}
-        itemContainerStyles={styles.questionContainer}
-        renderItem={(item) => <Question item={item} onDelete={onDeleteQuestion}/>}
-      />
-    </div>
+    </>
   )
 };
 

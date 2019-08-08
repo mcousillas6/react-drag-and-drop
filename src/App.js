@@ -1,5 +1,5 @@
 import React from 'react';
-import SectionEditor from './components/sectionEditor';
+import SectionEditor from './components/SectionEditor';
 
 function App() {
   return (
